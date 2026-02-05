@@ -42,7 +42,7 @@ npm install
 npm run dev
 ```
 ### Live Demo
-TBA
+https://k-tm-z.github.io/Calculator_Web_App/
 
 ## Use of AI as a Learning Tool
 AI was used as a supplementary learning aid to:
