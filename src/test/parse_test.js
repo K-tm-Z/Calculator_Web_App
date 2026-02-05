@@ -1,0 +1,10 @@
+import { parse } from "../components/calculator/engine/parser.js";
+import {tokenize} from "../components/calculator/engine/token.js";
+import { evaluate } from "../components/calculator/engine/evaluator.js";
+const t = tokenize("-9.7 * 8 + 24 / (9-2)");
+console.log("TOKENS", t);
+console.log("TYPES", t.map(x => x.type));
+console.log("LENGTH", t.length);
+console.log("TOKEN[7]", t[7]);
+console.log((parse(t)));
+console.log(evaluate(parse(t)));
