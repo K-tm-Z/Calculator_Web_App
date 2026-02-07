@@ -13,7 +13,6 @@ function App() {
         }}>
             <h2 style={{ textAlign: 'center' }}>Calculator Playground</h2>
             <Calculator />
-            Click the bar above me to start typing your expression!
             <div style={{ marginTop: '30px', fontSize: '0.9em', color: '#666' }}>
                 <h3>Keyboard Shortcuts:</h3>
                 <ul>

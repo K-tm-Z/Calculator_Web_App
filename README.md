@@ -51,6 +51,9 @@ AI was used as a supplementary learning aid to:
 - Act as a technical reviewer during refactoring
 All core logic, architectural decisions, and implementations were designed, written, and iteratively refined by the author.
 
+## Changelog
+See [CHANGELOG.md](CHANGELOG.md) for recent updates.
+
 ## Future Improvements
 - Implement and deploy a Keypad for mouse/ touch-screen users
 - Implement support for implicit multiplication

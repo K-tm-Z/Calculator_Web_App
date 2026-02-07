@@ -1,3 +1,6 @@
+import React from 'react';
+import styles from './Display.module.css';
+
 export function Display(props) {
     // Rendering caret position within the input
     const renderInputCaret = (input, cursorIndex) => {
@@ -26,67 +29,22 @@ export function Display(props) {
         );
     }
 
-    const onMouseDown = (e) => {
-        e.preventDefault();
-        e.currentTarget.focus();
-    }
-
-    const keyDown = (e) => {
-        // navigational and functional keys
-        if (e.key === 'Escape') {
-            e.preventDefault();
-            return props.onClearEverything();
-        }
-        else if (e.key === 'Backspace') {
-            e.preventDefault();
-            return props.onBackspace();
-        }
-        else if (e.key === 'Delete') {
-            e.preventDefault();
-            return props.onDelete();
-        }
-        else if (e.key === 'ArrowLeft') {
-            e.preventDefault();
-            return props.onMoveLeft();
-        }
-        else if (e.key === 'ArrowRight') {
-            e.preventDefault();
-            return props.onMoveRight();
-        }
-        else if (e.key === 'Home') {
-            e.preventDefault();
-            return props.onMoveHome();
-        }
-        else if (e.key === 'End') {
-            e.preventDefault();
-            return props.onMoveEnd();
-        }
-        else if (e.key === 'Enter') {
-            e.preventDefault();
-            return props.onEvaluate();
-        }
-
-        // ignore browser shortcuts
-        else if (e.ctrlKey || e.metaKey || e.altKey) {
-            return;
-        }
-        //Ignore other non-character keys
-        else if (e.key.length !== 1) return;
-
-        // Insert valid characters (numbers, operators, parentheses, decimal point, whitespace)
-        else if (/[0-9+\-*/().\s]/.test(e.key) && !e.ctrlKey && !e.metaKey) {
-            e.preventDefault();
-            return props.onInsert(e.key);
-        }
-        
-        return;
-    }
 
     return (
-        <div className="Display" tabIndex={0} onKeyDown={keyDown} onMouseDown={onMouseDown}>
-            {renderInputCaret(props.input, props.cursorIndex)}
-            {props.result !== null && renderResult(props.result)}
-            {props.error !== null && renderError(props.error)}
+        <div className={styles.Display}>
+            <div className={styles.input_meta}>
+                {renderInputCaret(props.input, props.cursorIndex)}
+            </div>
+            {props.result !== null && (
+                <div className={styles.result_meta}>
+                    {renderResult(props.result)}
+                </div>
+            )}
+            {props.error !== null && (
+                <div className={styles.error_meta} role="alert">
+            {renderError(props.error)}
+                </div>
+            )}
         </div>
     )
 }

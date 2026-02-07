@@ -51,20 +51,6 @@ function reducer(state, action) {
                 error: null,
             };
         }
-        case "DELETE": {
-            if (state.cursorIndex >= state.input.length) return { ...state, error: null };
-
-            const newInput =
-                state.input.slice(0, state.cursorIndex) +
-                state.input.slice(state.cursorIndex + 1);
-            const cursor = state.cursorIndex;
-            return {
-                ...state,
-                input: newInput,
-                cursorIndex: clampCursor(cursor, newInput),
-                error: null,
-            };
-        }
 
         case "MOVE_LEFT": {
             return {
