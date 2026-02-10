@@ -56,9 +56,32 @@ function evaluate(node, context = {}) {
                             throw new Error("Division by zero");
                         }
                         return leftVal / rightVal;
+                    case "^":
+                        return Math.pow(leftVal, rightVal);
+                    case "(":
+                        return leftVal * rightVal; // Implicit multiplication for juxtaposition
                     default:
                         throw new Error(`Unknown binary operator: ${node.operator}`);
                     }
+            }
+        case "FunctionCall":
+            {
+                let argVal = evaluate(node?.argument, context);
+                switch (node.func) {
+                    case "sqrt":
+                        if (argVal < 0) {
+                            throw new Error("Square root of negative number");
+                        }
+                        return Math.sqrt(argVal);
+                    case "sin":
+                        return Math.sin(argVal * Math.PI / 180); // Convert degrees to radians
+                    case "cos":
+                        return Math.cos(argVal * Math.PI / 180); // Convert degrees to radians
+                    case "tan":
+                        return Math.tan(argVal * Math.PI / 180); // Convert degrees to radians
+                    default:
+                        throw new Error('Unknown function expression.')
+                }
             }
         
         // If the node type is unknown, throw an error

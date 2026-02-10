@@ -1,0 +1,19 @@
+.box {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+}
+
+.box button {
+    padding: 8px 12px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.box .infoButton {
+    border-radius: 35px;
+    height: 40px;
+    width: 120px;
+    font-size: 16px;
+    font-weight: bold;
+}

@@ -6,6 +6,9 @@
 
 .KeypadButton {
     width: 100%;
+    font-family: 'DS-Digital', monospace;
+    font-size: 30px;
+    padding: 12px;
 }
 
 .Placeholder{

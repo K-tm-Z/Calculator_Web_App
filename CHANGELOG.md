@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.3.0] - 2026-02-10
+### Added
+- Juxtaposition for multipliccation expression (i.e. 2(3) now returns 6)
+- Funcitons: Squareroot, Exponent, Sine, Cosine, Tan
+
+### Changed
+- Rearrange the keypad layout for mobile accessibilities
+- Visualization for modules and components of the calculator
+- Keyboard Shortcuts now pops up as a card
+
 ## [0.2.0] - 2026-02-06
 ### Added
 - Virtual Keypad

@@ -1,32 +1,49 @@
 .Display {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     gap: 0.25rem;
     padding: 0.75rem;
-    min-height: 4.5rem;
+    height: 6rem;
+    border: 2px solid;
+    margin-bottom: 15px;
+    border-radius: 5px;
+
+    position: relative;
+    overflow: hidden;
 }
 
 .input_meta {
     text-align: left;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    white-space: pre-wrap;
-    overflow-wrap: anywhere;
-    min-height: 3rem;
+    font-family: 'DS-Digital', monospace;
+    font-weight: normal;
+    font-size: 1.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .result_meta {
     text-align: right;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    white-space: pre-wrap;
-    overflow-wrap: anywhere;
-    min-height: 1.5rem; /* Ensure space for result even if empty */
+    font-family: 'DS-Digital', monospace;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 2.5rem;
+    margin-bottom: 0;
 }
 
 .error_meta {
     text-align: right;
-    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    white-space: pre-wrap;
-    overflow-wrap: anywhere;
-    color: red;
+    right: 0.75rem;
+    bottom: 0.75rem;
+    z-index: 2;
+    width: auto;
+    max-width: calc(100% - 1.5rem);
+    font-family: 'DS-Digital', monospace;
+    font-weight: bold;
+    font-style: italic;
+    background: rgba(255, 6, 6, 0.918);
+    color: rgb(255, 255, 255);
+    position: absolute;
+    padding: 0.1rem 0.35rem;
 }

@@ -1,9 +1,10 @@
 export const inputLayout = [
-    [null, '<-', '->', null, null],
+    [null, '(', null, ')', null],
+    ['sin', 'cos', 'tan', '^', 'sqrt'],
     ['7', '8', '9', 'DEL', 'AC'],
     ['4', '5', '6', '×', '÷'],
     ['1', '2', '3', '+', '-'],
-    ['0', '.', '(', ')', '=']
+    ['0', '.', '<-', '=', '->']
 ]
 
 export const keyDict = {
@@ -20,9 +21,15 @@ export const keyDict = {
     '÷': { type: 'INSERT', text: '/' },
     '+': { type: 'INSERT', text: '+' },
     '-': { type: 'INSERT', text: '-' },
+    '^': { type: 'INSERT', text: '^' },
     '.': { type: 'INSERT', text: '.' },
     '(': { type: 'INSERT', text: '(' },
     ')': { type: 'INSERT', text: ')' },
+
+    'sqrt': { type: 'INSERT', text: 'sqrt(' },
+    'sin' : { type: 'INSERT', text: 'sin('},
+    'cos' : { type: 'INSERT', text: 'cos('},
+    'tan' : { type: 'INSERT', text: 'tan('},
 
     '0': { type: 'INSERT', text: '0' },
     '1': { type: 'INSERT', text: '1' },
@@ -52,4 +59,10 @@ export const physToPad = {
     ".": ".",
     "(": "(",
     ")": ")",
-    }
+    "^": "^",
+
+    "sqrt": "sqrt",
+    "sin" : "sin",
+    "cos" : "cos",
+    "tan" : "tan",
+}

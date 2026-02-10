@@ -16,7 +16,7 @@ export function Display(props) {
     const renderResult = (result) => {
         return (
             <div className="result">
-                result: {result}
+                {result}
             </div>
         );
     }
@@ -35,11 +35,9 @@ export function Display(props) {
             <div className={styles.input_meta}>
                 {renderInputCaret(props.input, props.cursorIndex)}
             </div>
-            {props.result !== null && (
-                <div className={styles.result_meta}>
-                    {renderResult(props.result)}
-                </div>
-            )}
+            <div className={styles.result_meta}>
+                {renderResult(props.result)}
+            </div>
             {props.error !== null && (
                 <div className={styles.error_meta} role="alert">
             {renderError(props.error)}

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useReducer, useRef } from 'react';
+import { useCallback, useEffect, useReducer, useRef, useState } from 'react';
 import { tokenize } from '../engine/token.js';
 import { parse } from '../engine/parser.js';
 import { evaluate } from '../engine/evaluator.js';
@@ -6,9 +6,13 @@ import { Display } from './Display.jsx';
 import { Keypad } from './Keypad.jsx';
 import { reducer, initialState } from './editorReducer.js';
 import { keyDict, physToPad } from './keymap.js';
+import styles from './calculator.module.css'
+import { Tooltips } from './tooltips.jsx';
+import { Portal } from '../../../utils/Portal.js';
 
 export function Calculator() {
     const [state, dispatch] = useReducer(reducer, initialState);
+    const [isOpen, setIsOpen] = useState(false);
     const leftHoldTimer = useRef(null);
     const leftHoldTriggered = useRef(false);
     const rightHoldTimer = useRef(null);
@@ -136,9 +140,11 @@ export function Calculator() {
             if (leftHoldTimer.current) clearTimeout(leftHoldTimer.current);
             if (rightHoldTimer.current) clearTimeout(rightHoldTimer.current);
         };
-}, [dispatchKeyId]);
+    }, [dispatchKeyId]);
 
-
+    const toggleButton = () => {
+        setIsOpen(!isOpen);
+    }
     // Render the calculator UI
     return (
         <div className="calculator">
@@ -158,6 +164,18 @@ export function Calculator() {
                 onEvaluate={onEvaluate}
             />
             <Keypad dispatchKeyId={dispatchKeyId} />
+            <div style={{ marginTop: '30px', fontSize: '0.9em', color: '#666' }}>
+                <div className={styles.box}>
+                    <button onClick={toggleButton} className={styles.infoButton} aria-label="Keyboard Shortcuts">
+                        {isOpen ? "i" : "i"}
+                    </button>
+                    {isOpen && (
+                        <Portal>
+                            <Tooltips onClose={toggleButton} />
+                        </Portal>
+                    )}
+                </div>
+            </div>
         </div>
     )
 }

@@ -65,14 +65,74 @@ function parseFactor(state) {
         });
     }
 
+    if (token.type == "Func") {
+        if (token.value == "sqrt") {
+            let func = currentToken(state).value;
+            consumeToken(state);
+            let argument = parseFactor(state);
+            return Node ({
+                type: "FunctionCall",
+                func: func,
+                argument: argument
+            });
+        }
+        else if (token.value == "sin") {
+            let func = currentToken(state).value;
+            consumeToken(state);
+            let argument = parseFactor(state);
+            return Node ({
+                type: "FunctionCall",
+                func: func,
+                argument: argument
+            });
+        }
+        else if (token.value == "cos") {
+            let func = currentToken(state).value;
+            consumeToken(state);
+            let argument = parseFactor(state);
+            return Node ({
+                type: "FunctionCall",
+                func: func,
+                argument: argument
+            });
+        }
+        else if (token.value == "tan") {
+            let func = currentToken(state).value;
+            consumeToken(state);
+            let argument = parseFactor(state);
+            return Node ({
+                type: "FunctionCall",
+                func: func,
+                argument: argument
+            });
+        }
+    }
     else {
         throw new Error(`Unexpected token: ${JSON.stringify(token)}`);
     }
 }
 
+function parseExponent(state) {
+    let left = parseFactor(state);
+
+    while(currentToken(state)?.type == "Op" && currentToken(state).value == "^") {
+        let operator = currentToken(state).value;
+        consumeToken(state);
+        let right = parseFactor(state);
+
+        left = Node ({
+            type: "BinaryExpression",
+            left: left,
+            operator: operator,
+            right: right
+        });
+    }
+    return left;
+}
+
 // Parses terms: factors combined with * and /
 function parseTerm(state) {
-    let left = parseFactor(state);
+    let left = parseExponent(state);
 
     while(currentToken(state)?.type == "Op" &&
         (currentToken(state).value == "*" || currentToken(state).value == "/")
@@ -88,6 +148,17 @@ function parseTerm(state) {
             operator: operator,
             right: right
     });
+    }
+
+    while (currentToken(state)?.type == "LPar" || currentToken(state)?.type == "Func") {
+        let right = parseFactor(state);
+
+        left = Node ({
+            type: "BinaryExpression",
+            left: left,
+            operator: "*",
+            right: right
+        });
     }
     return left;
 }

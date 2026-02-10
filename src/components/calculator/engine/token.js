@@ -20,15 +20,6 @@ function tokenize(str) {
             i++;
             continue;
         }
-        else if (/[a-zA-Z]/.test(char)) {
-            let ident = '';
-            while (i < str.length && /[a-zA-Z]/.test(str[i])) {
-                ident += str[i];
-                i++;
-            }
-            tokens.push({ type: 'Var', value: ident });
-            continue;
-        }
         else if (/[0-9.]/.test(char)) {
             let num = '';
             let dotCount = 0;
@@ -42,9 +33,20 @@ function tokenize(str) {
             tokens.push({ type: 'Num', value: parseFloat(num) });
             continue;
         }
-        else if ('+-*/'.includes(char)) {
+        else if ('+-*/^'.includes(char)) {
             tokens.push({ type: 'Op', value: char });
             i++;
+            continue;
+        }
+        else if (['sin', 'cos', 'tan'].includes(str.slice(i, i + 3))) {
+            let func = str.slice(i, i + 3);
+            tokens.push({ type: 'Func', value: func });
+            i += 3;
+            continue;
+        }
+        else if (str.slice(i, i + 4) === 'sqrt') {
+            tokens.push({ type: 'Func', value: 'sqrt' });
+            i += 4;
             continue;
         }
         else if (char === '(') {
@@ -55,6 +57,15 @@ function tokenize(str) {
         else if (char === ')') {
             tokens.push({ type: 'RPar', value: char });
             i++;
+            continue;
+        }
+        else if (/[a-zA-Z]/.test(char)) {
+            let ident = '';
+            while (i < str.length && /[a-zA-Z]/.test(str[i])) {
+                ident += str[i];
+                i++;
+            }
+            tokens.push({ type: 'Var', value: ident });
             continue;
         }
         else {
